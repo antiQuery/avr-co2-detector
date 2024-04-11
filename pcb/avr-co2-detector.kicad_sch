@@ -3798,6 +3798,24 @@
     (pin "2" (uuid 0a33e764-39b4-4341-a4a1-9ed0d36badcc))
   )
 
+  (symbol (lib_id "power:+3.3V") (at 237.49 172.72 90) (unit 1)
+    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (uuid 3ce18ad5-c25f-473d-96d7-76d865186ed1)
+    (property "Reference" "#PWR?" (id 0) (at 241.3 172.72 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "+3.3V" (id 1) (at 233.68 172.7199 90)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "" (id 2) (at 237.49 172.72 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (id 3) (at 237.49 172.72 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 7a207cda-eeef-41b1-9812-90f3d1c0e5f7))
+  )
+
   (symbol (lib_id "Logic_LevelTranslator:SN74LVC1T45DBV") (at 341.63 58.42 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 3df499c3-64c7-433e-9896-28046d0ca41e)
@@ -4054,24 +4072,6 @@
     (pin "2" (uuid 97546a16-0cbd-414d-bbb7-cfc253406d38))
   )
 
-  (symbol (lib_id "power:+5V") (at 237.49 172.72 90) (unit 1)
-    (in_bom yes) (on_board yes) (fields_autoplaced)
-    (uuid 605fbb56-8da3-4aef-9b1f-2e590b9cdadb)
-    (property "Reference" "#PWR030" (id 0) (at 241.3 172.72 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "+5V" (id 1) (at 233.68 172.7199 90)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (id 2) (at 237.49 172.72 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (id 3) (at 237.49 172.72 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid aeeb8ea1-1d65-4a18-bb95-50519bdeac1c))
-  )
-
   (symbol (lib_id "Device:R_Small") (at 252.73 152.4 180) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 6215c0f8-0998-4135-91fd-083a167cf9ec)
@@ -4145,7 +4145,7 @@
     (uuid 7331dd53-b74c-407d-99f2-d04a0d92ca38)
     (property "Reference" "J6" (id 0) (at 290.83 87.63 0))
     (property "Value" "BH1.27-6-2" (id 1) (at 290.83 90.17 0))
-    (property "Footprint" "Connector:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical" (id 2) (at 289.56 96.52 0)
+    (property "Footprint" "Connector_PinHeader_1.27mm:PinHeader_2x03_P1.27mm_Vertical" (id 2) (at 289.56 96.52 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 289.56 96.52 0)
@@ -5340,9 +5340,6 @@
     (path "/ec53338e-1e48-44ba-a6ce-221eefc738a1"
       (reference "#PWR029") (unit 1) (value "GND") (footprint "")
     )
-    (path "/605fbb56-8da3-4aef-9b1f-2e590b9cdadb"
-      (reference "#PWR030") (unit 1) (value "+5V") (footprint "")
-    )
     (path "/29ada418-1fd3-4155-a2b6-64a1493d8106"
       (reference "#PWR031") (unit 1) (value "GND") (footprint "")
     )
@@ -5414,6 +5411,9 @@
     )
     (path "/864ce80e-ee32-4291-a8e6-e555b6dfac44"
       (reference "#PWR054") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/3ce18ad5-c25f-473d-96d7-76d865186ed1"
+      (reference "#PWR?") (unit 1) (value "+3.3V") (footprint "")
     )
     (path "/9027a3cb-d61e-47fa-a79d-fba2d8e0022e"
       (reference "C1") (unit 1) (value "100nF") (footprint "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder")
@@ -5509,7 +5509,7 @@
       (reference "J5") (unit 1) (value "AVR-ISP-10") (footprint "Connector_IDC:IDC-Header_2x05_P2.54mm_Vertical")
     )
     (path "/7331dd53-b74c-407d-99f2-d04a0d92ca38"
-      (reference "J6") (unit 1) (value "BH1.27-6-2") (footprint "Connector:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical")
+      (reference "J6") (unit 1) (value "BH1.27-6-2") (footprint "Connector_PinHeader_1.27mm:PinHeader_2x03_P1.27mm_Vertical")
     )
     (path "/bade648f-7468-4843-9b05-5a4d92a200c5"
       (reference "JP1") (unit 1) (value "\"UART RX jumper\"") (footprint "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical")
