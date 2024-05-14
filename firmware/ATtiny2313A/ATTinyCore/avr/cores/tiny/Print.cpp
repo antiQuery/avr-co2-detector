@@ -38,6 +38,7 @@ size_t Print::write(const uint8_t *buffer, size_t size) {
   return n;
 }
 
+#ifdef rdbtr43
 size_t Print::print(const String &s) {
   size_t n = 0;
   for (uint16_t i = 0; i < s.length(); i++) {
@@ -45,11 +46,13 @@ size_t Print::print(const String &s) {
   }
   return n;
 }
+#endif
 
 size_t Print::print(const char str[]) {
   return write(str);
 }
 
+#ifdef rdbtr4334
 size_t Print::print(char c) {
   return write(c);
 }
@@ -280,3 +283,4 @@ size_t Print::printFloat(double number, uint8_t digits) {
 
   return n;
 }
+#endif
