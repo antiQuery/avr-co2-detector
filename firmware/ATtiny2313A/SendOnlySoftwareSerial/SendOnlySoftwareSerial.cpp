@@ -32,12 +32,6 @@ The latest version of this library can always be found at
 http://arduiniana.org.
 */
 
-// When set, _DEBUG co-opts pins 11 and 13 for debugging with an
-// oscilloscope or logic analyzer.  Beware: it also slightly modifies
-// the bit times, so don't rely on it too much at high baud rates
-#define _DEBUG 0
-#define _DEBUG_PIN1 11
-#define _DEBUG_PIN2 13
 //
 // Includes
 //
@@ -46,27 +40,6 @@ http://arduiniana.org.
 #include <Arduino.h>
 #include <SendOnlySoftwareSerial.h>
 #include <util/delay_basic.h>
-
-//
-// Debugging
-//
-// This function generates a brief pulse
-// for debugging or measuring on an oscilloscope.
-#if _DEBUG
-inline void DebugPulse(uint8_t pin, uint8_t count)
-{
-  volatile uint8_t *pport = portOutputRegister(digitalPinToPort(pin));
-
-  uint8_t val = *pport;
-  while (count--)
-  {
-    *pport = val | digitalPinToBitMask(pin);
-    *pport = val;
-  }
-}
-#else
-inline void DebugPulse(uint8_t, uint8_t) {}
-#endif
 
 //
 // Private methods
@@ -85,14 +58,6 @@ SendOnlySoftwareSerial::SendOnlySoftwareSerial(uint8_t transmitPin, bool inverse
   _inverse_logic(inverse_logic)
 {
   setTX(transmitPin);
-}
-
-//
-// Destructor
-//
-SendOnlySoftwareSerial::~SendOnlySoftwareSerial()
-{
-  end();
 }
 
 void SendOnlySoftwareSerial::setTX(uint8_t tx)
@@ -132,25 +97,10 @@ void SendOnlySoftwareSerial::begin(long speed)
   // These are all close enough to just use 15 cycles, since the inter-bit
   // timings are the most critical (deviations stack 8 times)
   _tx_delay = subtract_cap(bit_delay, 15 / 4);
-
-#if _DEBUG
-  pinMode(_DEBUG_PIN1, OUTPUT);
-  pinMode(_DEBUG_PIN2, OUTPUT);
-#endif
-
-}
-
-void SendOnlySoftwareSerial::end()
-{
 }
 
 size_t SendOnlySoftwareSerial::write(uint8_t b)
 {
-  if (_tx_delay == 0) {
-    setWriteError();
-    return 0;
-  }
-
   // By declaring these as local variables, the compiler will put them
   // in registers _before_ disabling interrupts and entering the
   // critical timing sections below, which makes it a lot easier to
@@ -197,25 +147,4 @@ size_t SendOnlySoftwareSerial::write(uint8_t b)
   tunedDelay(_tx_delay);
 
   return 1;
-}
-
-void SendOnlySoftwareSerial::flush()
-{
-  // There is no tx buffering, simply return
-}
-
-// Read data from buffer
-int SendOnlySoftwareSerial::read()
-{
-  return -1;
-}
-
-int SendOnlySoftwareSerial::available()
-{
-  return 0;
-}
-
-int SendOnlySoftwareSerial::peek()
-{
-  return -1;
 }

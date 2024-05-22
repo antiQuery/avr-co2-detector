@@ -33,7 +33,6 @@ http://arduiniana.org.
 #define SendOnlySoftwareSerial_h
 
 #include <inttypes.h>
-#include <Stream.h>
 
 /******************************************************************************
 * Definitions
@@ -43,7 +42,7 @@ http://arduiniana.org.
 #define GCC_VERSION (__GNUC__ * 10000 + __GNUC_MINOR__ * 100 + __GNUC_PATCHLEVEL__)
 #endif
 
-class SendOnlySoftwareSerial : public Stream
+class SendOnlySoftwareSerial
 {
 private:
   uint8_t _transmitBitMask;
@@ -69,20 +68,10 @@ private:
 public:
   // public methods
   SendOnlySoftwareSerial(uint8_t transmitPin, bool inverse_logic = false);
-  ~SendOnlySoftwareSerial();
   void begin(long speed);
-  void end();
-  bool overflow() { bool ret = _buffer_overflow; if (ret) _buffer_overflow = false; return ret; }
-  int peek();
 
   virtual size_t write(uint8_t byte);
-  virtual int read();
-  virtual int available();
-  virtual void flush();
   operator bool() { return true; }
-
-  using Print::write;
-
 };
 
 // Arduino 0012 workaround
